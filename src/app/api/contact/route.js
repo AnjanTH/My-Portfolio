@@ -25,8 +25,13 @@ export async function POST(request) {
     });
     console.log('Contact created:', contact);
 
-    // Send SMS notification
-    await sendContactNotification(name, email, message);
+    // Try to send SMS notification, but don't fail if it doesn't work
+    try {
+      await sendContactNotification(name, email, message);
+    } catch (smsError) {
+      console.error('SMS notification failed:', smsError);
+      // Continue execution even if SMS fails
+    }
 
     return NextResponse.json({
       message: "Message sent successfully!",
@@ -35,7 +40,6 @@ export async function POST(request) {
   } catch (error) {
     console.error('Contact form error:', error);
     
-    // Check for specific MongoDB connection errors
     if (error.name === 'MongooseServerSelectionError') {
       return NextResponse.json({
         message: "Database connection error. Please try again later.",

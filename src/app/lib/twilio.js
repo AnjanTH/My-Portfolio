@@ -5,10 +5,16 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 const myPhoneNumber = process.env.MY_PHONE_NUMBER;
 
-const client = twilio(accountSid, authToken);
-
 export async function sendContactNotification(name, email, message) {
   try {
+    // Check if required environment variables are present
+    if (!accountSid || !authToken || !twilioPhoneNumber || !myPhoneNumber) {
+      console.log('Twilio credentials not configured');
+      return false;
+    }
+
+    const client = twilio(accountSid, authToken);
+    
     const smsMessage = `
 New Contact Form Submission:
 Name: ${name}
