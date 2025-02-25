@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import ScrollReveal from './ScrollReveal'
 import styles from '../styles/Projects.module.css'
 
 export default function Projects() {
@@ -54,53 +55,63 @@ export default function Projects() {
 
   return (
     <section className={styles.projects}>
+      <ScrollReveal>
+        <h2 className={styles.sectionTitle}>Projects</h2>
+      </ScrollReveal>
+      
       <div className={styles.grid}>
         {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={styles.card}
-          >
-            <div className={styles.content}>
-              <h3 className={styles.title}>{project.title}</h3>
+          <ScrollReveal key={index} delay={index * 0.2}>
+            <motion.div className={styles.card}>
+              <div className={styles.content}>
+                <h3 className={styles.title}>
+                  {project.title}
+                </h3>
 
-              {/* Render HTML content correctly */}
-              <div
-                className={styles.description}
-                dangerouslySetInnerHTML={{ __html: project.description }}
-              ></div>
+                <div
+                  className={styles.description}
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                />
 
-              <div className={styles.tech}>
-                {project.tech.map((tech, i) => (
-                  <span key={i} className={styles.techItem}>
-                    {tech}
-                  </span>
-                ))}
+                <div className={styles.tech}>
+                  {project.tech.map((tech, i) => (
+                    <motion.span 
+                      key={i} 
+                      className={styles.techItem}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+
+                <div className={styles.links}>
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.link}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Project
+                  </motion.a>
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.githubLink}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    GitHub
+                  </motion.a>
+                </div>
               </div>
-              <div className={styles.links}>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.link}
-                >
-                  View Project
-                </a>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.githubLink}
-                >
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </ScrollReveal>
         ))}
       </div>
     </section>
-  )
+  );
 }

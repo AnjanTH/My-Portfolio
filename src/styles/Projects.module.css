@@ -1,6 +1,18 @@
 .projects {
   padding: 4rem 0;
   background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+.cursor {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+  z-index: 0;
 }
 
 .container {
@@ -9,46 +21,25 @@
   padding: 0 1rem;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2.5rem;
-  color: #1a202c;
-  position: relative;
-}
-
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(to right, #4a90e2, #50c9c3);
-  border-radius: 2px;
-}
-
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(128, 0, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  will-change: transform;
 }
 
 .cardContent {
@@ -80,11 +71,6 @@
   color: #4a5568;
   border-radius: 9999px;
   font-size: 0.875rem;
-  transition: background-color 0.2s ease;
-}
-
-.tag:hover {
-  background: #cbd5e0;
 }
 
 .tech {
@@ -112,11 +98,6 @@
   color: #4a90e2;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.link:hover {
-  color: #2d73c3;
 }
 
 .link,
@@ -124,7 +105,6 @@
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-weight: 500;
-  transition: all 0.3s ease;
   flex: 1;
   text-align: center;
 }
@@ -134,18 +114,10 @@
   color: white;
 }
 
-.link:hover {
-  background: var(--accent-light);
-}
-
 .githubLink {
   background: transparent;
   border: 1px solid var(--accent);
   color: var(--accent);
-}
-
-.githubLink:hover {
-  background: rgba(128, 0, 255, 0.1);
 }
 
 .imageWrapper {
@@ -159,22 +131,99 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.card:hover .image {
-  transform: scale(1.05);
 }
 
 .content {
-  padding: 1.5rem;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--text);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  will-change: transform, opacity;
+}
+
+.description {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  will-change: transform, opacity;
+}
+
+.description h4 {
+  color: var(--accent);
+  margin: 1.5rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+.description ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.description li {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.description li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.description b {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+  will-change: transform, opacity;
+}
+
+.techItem {
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  will-change: transform, opacity;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  will-change: transform, opacity;
+}
+
+.link, .githubLink {
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  will-change: transform;
+}
+
+.link {
+  background: var(--accent);
+  color: white;
+}
+
+.githubLink {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -183,7 +232,15 @@
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
+    padding: 1rem;
+    gap: 2rem;
+  }
+  
+  .content {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
   }
 }

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import styles from '../styles/Hero.module.css'
+import ScrollReveal from './ScrollReveal'
 
 export default function Hero() {
   const [text, setText] = useState('')
@@ -28,42 +29,36 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className={styles.textContent}
-        >
-          <h1 className={styles.title}>Anjan T H</h1>
-          <h2 className={styles.subtitle}>{text}</h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isTypingComplete ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-            className={styles.description}
-          >
-            Passionate about creating beautiful and functional web applications
-            with modern technologies.
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className={styles.imageContainer}
-        >
-          <div className={styles.imageWrapper}>
-            <Image
-              src="/profile.jpg"
-              alt="Anjan T H"
-              width={300}
-              height={300}
-              className={styles.profileImage}
-              priority
-            />
+        <ScrollReveal>
+          <div className={styles.textContent}>
+            <h1 className={styles.title}>Anjan T H</h1>
+            <h2 className={styles.subtitle}>{text}</h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isTypingComplete ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+              className={styles.description}
+            >
+              Passionate about creating beautiful and functional web applications
+              with modern technologies.
+            </motion.p>
           </div>
-        </motion.div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.3}>
+          <div className={styles.imageContainer}>
+            <div className={styles.imageWrapper}>
+              <Image
+                src="/profile.jpg"
+                alt="Anjan T H"
+                width={300}
+                height={300}
+                className={styles.profileImage}
+                priority
+              />
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
