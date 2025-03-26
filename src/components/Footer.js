@@ -65,6 +65,9 @@ export default function Footer() {
           <p className={styles.copyright}>
             © {currentYear} Anjan T H. All rights reserved.
           </p>
+          <p className={styles.madeWithLove}>
+            Made with <span className={styles.heart}>❤️</span> in India
+          </p>
         </div>
       </div>
     </footer>

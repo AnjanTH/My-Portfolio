@@ -9,22 +9,38 @@ import ScrollReveal from './ScrollReveal'
 export default function Hero() {
   const [text, setText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
-  const fullText = "Full Stack Developer"
+  const [textIndex, setTextIndex] = useState(0)
+  const titles = ["Full Stack Developer", "AI/ML Enthusiast"]
 
   useEffect(() => {
     let currentIndex = 0
+    let currentTextIndex = textIndex
+
     const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setText(fullText.slice(0, currentIndex))
+      if (currentIndex <= titles[currentTextIndex].length) {
+        setText(titles[currentTextIndex].slice(0, currentIndex))
         currentIndex++
       } else {
         setIsTypingComplete(true)
         clearInterval(typingInterval)
+        
+        // Wait and start deleting
+        setTimeout(() => {
+          const deletingInterval = setInterval(() => {
+            if (currentIndex > 0) {
+              setText(titles[currentTextIndex].slice(0, currentIndex - 1))
+              currentIndex--
+            } else {
+              clearInterval(deletingInterval)
+              setTextIndex((prev) => (prev + 1) % titles.length)
+            }
+          }, 50)
+        }, 2000)
       }
     }, 100)
 
     return () => clearInterval(typingInterval)
-  }, [])
+  }, [textIndex])
 
   return (
     <section className={styles.hero}>

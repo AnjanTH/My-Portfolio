@@ -37,9 +37,15 @@ export default function About() {
 
       <div className={styles.content}>
         <ScrollReveal delay={0.2}>
-          <div className={styles.text}>
+        <div className={styles.text}>
             <p>
               I am currently pursuing a Bachelor of Engineering in Computer Science and Engineering at Siddaganga Institute of Technology, Tumakuru. Previously, I completed my pre-university education in Science (PCMB) at Mahesh PU College, Maraluru, and my schooling at Geetha English High School, Dobbespete.
+            </p>
+            <p>
+              As a Full Stack Developer, I am passionate about creating end-to-end web applications and solutions. I have experience working with various technologies across both frontend and backend development. My expertise includes building responsive user interfaces, RESTful APIs, and managing databases.
+            </p>
+            <p>
+              I am also an AI/ML enthusiast, constantly exploring the fascinating world of artificial intelligence and machine learning. I enjoy working on projects that incorporate data analysis, predictive modeling, and implementing machine learning algorithms to solve real-world problems.
             </p>
           </div>
         </ScrollReveal>

@@ -1,5 +1,7 @@
 .projects {
-  padding: 4rem 0;
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
   background: var(--background);
   position: relative;
   overflow: hidden;
@@ -15,6 +17,16 @@
   z-index: 0;
 }
 
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -22,24 +34,25 @@
 }
 
 .grid {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
   z-index: 1;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  border-radius: 1rem;
   overflow: hidden;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   will-change: transform;
+  transition: transform 0.3s ease;
 }
 
 .cardContent {
@@ -53,8 +66,9 @@
 }
 
 .description {
-  color: var(--text-secondary);
+  color: #94a3b8;
   margin-bottom: 1.5rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
@@ -81,17 +95,19 @@
 }
 
 .techItem {
-  background: rgba(128, 0, 255, 0.1);
-  color: var(--accent);
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
   padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
   border: 1px solid rgba(128, 0, 255, 0.2);
 }
 
 .links {
   display: flex;
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .link {
@@ -102,28 +118,28 @@
 
 .link,
 .githubLink {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
   font-weight: 500;
   flex: 1;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .link {
-  background: var(--accent);
+  background: #3b82f6;
   color: white;
 }
 
 .githubLink {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  background: #374151;
+  color: white;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -133,21 +149,33 @@
   object-fit: cover;
 }
 
+.projectImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .projectImage {
+  transform: scale(1.05);
+}
+
 .content {
-  padding: 2.5rem;
+  padding: 1.5rem;
   position: relative;
   z-index: 2;
 }
 
 .title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
   will-change: transform, opacity;
 }
 
 .description {
-  color: var(--text-secondary);
+  color: #94a3b8;
   line-height: 1.8;
   margin-bottom: 2rem;
   font-size: 1.1rem;
@@ -155,8 +183,8 @@
 }
 
 .description h4 {
-  color: var(--accent);
-  margin: 1.5rem 0 1rem;
+  color: #fff;
+  margin: 1rem 0 0.5rem;
   font-size: 1.3rem;
 }
 
@@ -166,7 +194,7 @@
 }
 
 .description li {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
 }
@@ -175,7 +203,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--accent);
+  color: #3b82f6;
 }
 
 .description b {
@@ -187,7 +215,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   will-change: transform, opacity;
 }
 
@@ -242,5 +270,46 @@
   
   .title {
     font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects {
+    padding: 6rem 2rem;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .links {
+    margin-top: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .links {
+    flex-direction: column;
+  }
+  
+  .imageWrapper {
+    height: 200px;
   }
 }

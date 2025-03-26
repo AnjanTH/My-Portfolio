@@ -7,8 +7,18 @@ import MouseColor from '../components/MouseColor'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Portfolio',
-  description: 'My Personal Portfolio',
+  title: 'Anjan T H | Portfolio',
+  description: 'Full Stack Developer and AI/ML Enthusiast',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.webp',
+        sizes: '32x32',
+        type: 'image/x-icon',
+      }]
+    
+  },
+  manifest: '/manifest.json',
 }
 
 export default function RootLayout({ children }) {
