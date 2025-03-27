@@ -40,8 +40,8 @@ export default function Resume() {
             animate={{ scale: 1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="/Anjan's resume1.pdf"
-            download="Anjan_TH_Resume.pdf"
+            href="/My_Resume____.pdf"
+            download="My_Resume____.pdf"
             className={styles.downloadButton}
             onClick={handleDownload}
           >
